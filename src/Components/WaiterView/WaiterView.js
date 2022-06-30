@@ -2,7 +2,7 @@ import './WaiterView.css';
 import bqlogo from '../../assets/bqlogo.png';
 import Icon from "../../IcoMoon/Icon";
 import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../../firebase-config'
+import { db, getAddedToCart } from '../../firebase-config'
 import { useEffect, useState } from 'react';
 
 const waiter = 'Megan';
@@ -86,7 +86,18 @@ function Order() {
                 </select>
             </label>
             <hr />
-            <div>Ordered items go here</div>
+            <div>
+                Ordered items go here
+                {
+                    getAddedToCart((querySnapshot) => {
+                        querySnapshot.forEach(element => {
+                            return(
+                                <div>{element}</div>
+                            )
+                        });
+                    })
+                }
+            </div>
             <Icon color="blue" size={20} icon="plus" />
             <hr />
             <div>Total: $0</div>

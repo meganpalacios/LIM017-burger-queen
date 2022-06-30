@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, query, collection, where, onSnapshot } from 'firebase/firestore';
 
 // import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
@@ -26,3 +26,8 @@ export const auth = getAuth(app);
 // export const logInGoogle = () => signInWithPopup(auth, provider);
 
 export const db = getFirestore(app);
+
+export const getAddedToCart = (callback) => {
+  const dataSort = query(collection(db, 'menu-items'), where('Count', '!=', 0));
+  return onSnapshot(dataSort, callback);
+};
