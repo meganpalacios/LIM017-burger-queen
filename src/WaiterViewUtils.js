@@ -1,3 +1,5 @@
+import { sendOrderInFirebase } from '../src/firebase-utils'
+
 export const addProduct = (props) => {
     const selected = props.selected;
     const id = props.item.id;
@@ -57,4 +59,30 @@ export const deleteAllProducts = (selected, setSelected) => {
         product.data.Count = 0;
     });
     setSelected([]);
+}
+
+// esto sirve para hacer el número de pedido
+const orderNumber = () => {
+    const now = Date.now().toString()
+    const orderNum = now.substring(6, 12);
+    /*const date = new Date();
+    const time = date.getTime().substring(6, 12);*/
+ 
+    return orderNum;
+}
+orderNumber()
+
+export const sendOrderToFireBase = (selected, setSelected, username, total) => {
+    console.log('envio')
+    const newOrderFirebase = {
+        orderNumber : orderNumber(),
+        initTime : new Date().toLocaleString('es-PE'), //esto retorna 12/7/2022, 17:46:42
+        worker: username,
+        //table: ,
+        total: total,
+        state: 'pending',
+        order: selected
+    }
+    sendOrderInFirebase(newOrderFirebase);
+    setSelected([])
 }

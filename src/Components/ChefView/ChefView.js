@@ -1,7 +1,7 @@
 import './ChefView.css'
 import bqlogo from '../../assets/bqlogo.png';
 // import Icon from "../../IcoMoon/Icon";
-
+import PendingOrders from '../PendingOrders/PendingOrders'
 
 function ChefView() {
     return (
@@ -13,7 +13,7 @@ function ChefView() {
                 </nav>
             </header>
             <main className='main'>
-                main
+                <PendingOrders/>  
             </main>
             <aside className='aside'>
                 meow

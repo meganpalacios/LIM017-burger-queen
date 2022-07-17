@@ -5,13 +5,15 @@ import logo from '../../assets/bqlogo.png';
 import Icon from "../../IcoMoon/Icon";
 import { useNavigate } from "react-router-dom";
 
+function SignIn(props) {
 
-function SignIn() {
     const nav = useNavigate();
     const handleGoogleSingin = () => {
         const provider = new GoogleAuthProvider();
         return (signInWithPopup(auth, provider)
-        .then(() => {
+        .then((result) => {
+            props.setUsername(result.user.displayName);
+            console.log('username state passed as prop:', props.username);
             nav('/navigate')})
         .catch((error) => {console.log(error)}));
     }

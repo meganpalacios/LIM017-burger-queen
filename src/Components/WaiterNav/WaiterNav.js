@@ -10,14 +10,16 @@ export default function WaiterNav() {
     let location = useLocation().pathname;
 
     useEffect(() => {
-        console.log('location has been changed to:', location);
         switch (location) {
             case '/waiter-view/place-orders':
                 setPlaceOrdersState('active');
                 setReadyServeState('inactive');
                 break;
+            case '/waiter-view/':
+                setPlaceOrdersState('active');
+                setReadyServeState('inactive');
+                break;
             case '/waiter-view/ready-to-serve':
-                console.log('ayuda');
                 setPlaceOrdersState('inactive');
                 setReadyServeState('active');
                 break;
