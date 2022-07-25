@@ -11,11 +11,11 @@ function SignIn(props) {
     const handleGoogleSingin = () => {
         const provider = new GoogleAuthProvider();
         return (signInWithPopup(auth, provider)
-        .then((result) => {
+        .then(result => {
             props.setUsername(result.user.displayName);
             console.log('username state passed as prop:', props.username);
             nav('/navigate')})
-        .catch((error) => {console.log(error)}));
+        .catch(error => console.log(error)));
     }
 
     return (
